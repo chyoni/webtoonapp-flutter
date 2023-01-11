@@ -46,3 +46,16 @@ class App extends StatelessWidget {
 ### #03 Widget
 
 `SizedBox`, `Container`, `BoxDecoration`, `Padding`, `BorderRadius`, `TextStyle`, ...
+
+### #04 For Flutter/Dart settings.json
+
+```json
+// settings.json
+
+// 얘는 저장하면 const로 선언해도 되는 아이는 알아서 const로 바꿔줌
+"editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+// 얘는 트리구조로 보여줌
+"dart.previewFlutterUiGuides": true,
+```
