@@ -123,3 +123,75 @@ class _AppState extends State<App> {
 ### #08 setState()
 
 - 이 녀석은 Flutter에게 State의 데이터가 변경되었음을 알려주는 메소드이다. 따라서 이 녀석이 호출되면 그 State를 가지는 클래스가 build를 다시 호출하고 다시 호출하기 때문에 새로운 state를 가지고 화면에 다시 뿌려준다.
+
+### #09 BuildContext
+
+- BuildContext는 현재 클래스의 모든 상위 클래스(부모 위젯 트리)의 정보를 담고 있다.
+  즉 루트로부터 쭉쭉 내려와서 어떤 특정 Text Class가 있다고 가정하면 그 Class의 build Method는 BuildContext를 파라미터로 받는데, 이 파라미터에는 해당 Text Class의 모든 상위 클래스의 정보를 담고있다.
+
+  아래는 그 예시인데, App > MaterialApp > Scaffold > Center > Column > MyTitleText 이 위젯 트리로 되어 있다. 우리가 MaterialApp의 theme을 설정하고 그것을 MyTitleText에서 사용하려면 context를 사용하면 된다. 아래처럼 !
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(App());
+}
+
+class App extends StatefulWidget {
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  List<int> number = [];
+
+  void onClicked() {
+    // ! 이 녀석은 state의 값을 바꾸는 녀석 그래서 build라는 메소드를 바뀐 state를 가지고 다시 호출해준다.
+    setState(() {
+      number.add(number.length);
+    });
+
+    // ! 근데 꼭 setState(() {}) 안에 변경할 state를 넣지 않아도 그냥 setState(() {})를 호출하면 결국 다시 build를 호출하는데
+    // ! 가독성이 당연히 떨어지겠지 하지만 아래처럼 해도 가능은하다.
+    // counter = counter + 1;
+    // setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: ThemeData(
+          textTheme: const TextTheme(
+            titleLarge: TextStyle(color: Colors.red),
+          ),
+        ),
+        home: Scaffold(
+          backgroundColor: const Color(0xFFF4EDDB),
+          body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  MyTitleText(),
+                ]),
+          ),
+        ));
+  }
+}
+
+class MyTitleText extends StatelessWidget {
+  const MyTitleText({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Click count",
+      style: TextStyle(
+          fontSize: 30, color: Theme.of(context).textTheme.titleLarge?.color),
+    );
+  }
+}
+
+```
