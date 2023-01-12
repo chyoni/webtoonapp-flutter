@@ -63,3 +63,57 @@ class App extends StatelessWidget {
 ### #05 My custom widget component
 
 ### #06 Transform, Offset, Icon Widget
+
+### #07 StatelessWidget, StatefulWidget
+
+- StatelessWidget은 State가 없는 위젯을 말하고, StatefulWidget은 State를 가지는 Widget을 말한다.
+  StatefulWidget을 상속받는 AClass는 State\<AClass\> 타입의 createState() 라는 메소드를 가지는데 그 메소드는 State\<AClass\>를 상속받는 또 다른 클래스를 리턴하는데 해당 클래스는 UI를 가지며 State를 프로퍼티로 가지는 클래스다.
+  그래서 기본 골격은 다음과 같다.
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(App());
+}
+
+class App extends StatefulWidget {
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  int counter = 0;
+
+  void onClicked() {
+    counter = counter + 1;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+      backgroundColor: const Color(0xFFF4EDDB),
+      body: Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          const Text(
+            "Click count",
+            style: TextStyle(fontSize: 30),
+          ),
+          Text(
+            '$counter',
+            style: const TextStyle(fontSize: 30),
+          ),
+          IconButton(
+              iconSize: 40,
+              onPressed: onClicked,
+              icon: const Icon(
+                Icons.add_box_outlined,
+              ))
+        ]),
+      ),
+    ));
+  }
+}
+
+```
