@@ -10,12 +10,12 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  int counter = 0;
+  List<int> number = [];
 
   void onClicked() {
     // ! 이 녀석은 state의 값을 바꾸는 녀석 그래서 build라는 메소드를 바뀐 state를 가지고 다시 호출해준다.
     setState(() {
-      counter = counter + 1;
+      number.add(number.length);
     });
 
     // ! 근데 꼭 setState(() {}) 안에 변경할 state를 넣지 않아도 그냥 setState(() {})를 호출하면 결국 다시 build를 호출하는데
@@ -35,10 +35,7 @@ class _AppState extends State<App> {
             "Click count",
             style: TextStyle(fontSize: 30),
           ),
-          Text(
-            '$counter',
-            style: const TextStyle(fontSize: 30),
-          ),
+          for (var n in number) Text("$n"),
           IconButton(
               iconSize: 40,
               onPressed: onClicked,
