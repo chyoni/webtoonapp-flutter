@@ -86,7 +86,9 @@ class _AppState extends State<App> {
   int counter = 0;
 
   void onClicked() {
-    counter = counter + 1;
+    setState(() {
+      counter = counter + 1;
+    });
   }
 
   @override
@@ -117,3 +119,7 @@ class _AppState extends State<App> {
 }
 
 ```
+
+### #08 setState()
+
+- 이 녀석은 Flutter에게 State의 데이터가 변경되었음을 알려주는 메소드이다. 따라서 이 녀석이 호출되면 그 State를 가지는 클래스가 build를 다시 호출하고 다시 호출하기 때문에 새로운 state를 가지고 화면에 다시 뿌려준다.
