@@ -195,3 +195,5 @@ class MyTitleText extends StatelessWidget {
 }
 
 ```
+
+### #10 Flexible, Expanded Widget

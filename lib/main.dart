@@ -1,61 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:webtoonapp/screens/home_screen.dart';
 
 void main() {
   runApp(App());
 }
 
-class App extends StatefulWidget {
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  List<int> number = [];
-
-  void onClicked() {
-    // ! 이 녀석은 state의 값을 바꾸는 녀석 그래서 build라는 메소드를 바뀐 state를 가지고 다시 호출해준다.
-    setState(() {
-      number.add(number.length);
-    });
-
-    // ! 근데 꼭 setState(() {}) 안에 변경할 state를 넣지 않아도 그냥 setState(() {})를 호출하면 결국 다시 build를 호출하는데
-    // ! 가독성이 당연히 떨어지겠지 하지만 아래처럼 해도 가능은하다.
-    // counter = counter + 1;
-    // setState(() {});
-  }
-
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
+          backgroundColor: const Color(0xFFE6726C),
           textTheme: const TextTheme(
-            titleLarge: TextStyle(color: Colors.red),
+            headline1: TextStyle(
+              color: Color(0xFF232B55),
+            ),
           ),
+          cardColor: const Color(0xFFF4EDDB),
         ),
-        home: Scaffold(
-          backgroundColor: const Color(0xFFF4EDDB),
-          body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  MyTitleText(),
-                ]),
-          ),
+        home: const Scaffold(
+          body: HomeScreen(),
         ));
-  }
-}
-
-class MyTitleText extends StatelessWidget {
-  const MyTitleText({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      "Click count",
-      style: TextStyle(
-          fontSize: 30, color: Theme.of(context).textTheme.titleLarge?.color),
-    );
   }
 }
