@@ -1,6 +1,9 @@
-# webtoonapp
+# Flutter Tutorials
 
-- 첫번째 flutter app
+- Hello world
+- UI Design
+- Timer App
+- `Webtoon App`
 
 ### #01 Init
 
@@ -201,3 +204,47 @@ class MyTitleText extends StatelessWidget {
 ### #11 Create Timer App
 
 ### #12 Timer App DONE
+
+---
+
+# Webtoon App
+
+### #01 pubspec.yaml file / Future Type
+
+- 얘는 pom.xml 파일 같이 Flutter 프로젝트의 설정 및 환경 정보를 담는 파일이라고 보면 된다. 여기서 dependecies, projectinfo, 등 많은것들을 설정할 수 있다.
+
+```yaml
+# pubspec.yaml
+
+# 이 녀석은 Flutter에서 http request를 하기 위해 필요한 package이다.
+# VSC가 좋은게 이거 그냥 붙여 넣고 저장하면 알아서 package를 다운받아 준다.
+dependencies:
+  http: ^0.13.5
+```
+
+- 자, 나는 http 라는 패키지를 이 플루터 프로젝트에 추가하고 request를 하기 위해서 해당 모듈을 가져다가 썼다. 그러고 코드를 보면 아래와 같다.
+
+```dart
+void getTodaysToons() async {
+    final url = Uri.parse('$baseURL/$today');
+    http.get(url);
+  }
+```
+
+- 여기서 get은 리턴 타입이 `Future<Reponse>` 라는 타입인데 Future는 JavaScript의 Promise와 동일하다고 생각하면 된다.
+  즉, Dart도 역시 오래걸리거나 사용자의 네트워크 환경에 따라 간단하지 않고 오래 걸릴 가능성이 있는 코드를 처리할 때 그 Statement를 기다리고 나서 다음 코드가 실행이 될 필요가 있을 때 `Future<리턴타입>` 이라는 리턴 타입을 준다. 이를 처리 하기위해 async / await을 사용하는데 그 코드가 아래와 같다.
+
+```dart
+
+// Dart에서는 async 키워드를 함수 마지막에 쓰는것만 다르네.
+
+void getTodaysToons() async {
+    final url = Uri.parse('$baseURL/$today');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      print(response.body);
+      return;
+    }
+    throw Error();
+  }
+```
