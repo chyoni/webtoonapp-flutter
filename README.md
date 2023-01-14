@@ -248,3 +248,5 @@ void getTodaysToons() async {
     throw Error();
   }
 ```
+
+### #02 Model, Instance, Class, API
