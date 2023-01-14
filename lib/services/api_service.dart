@@ -4,11 +4,12 @@ import 'package:http/http.dart' as http;
 import 'package:webtoonapp/models/webtoon_model.dart';
 
 class ApiService {
-  final String baseURL = "https://webtoon-crawler.nomadcoders.workers.dev";
-  final String today = "today";
+  static const String baseURL =
+      "https://webtoon-crawler.nomadcoders.workers.dev";
+  static const String today = "today";
 
-  // ! async 함수는 무조건 리턴 타입이 Future<something>이 되어야 한다.
-  Future<List<WebtoonModel>> getTodaysToons() async {
+  // ! async 함수는 무조건 리턴 타입이 Future<something> or void가 되어야 한다.
+  static Future<List<WebtoonModel>> getTodaysToons() async {
     late List<WebtoonModel> webtoonInstances = [];
     final url = Uri.parse('$baseURL/$today');
     final response = await http.get(url);
