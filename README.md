@@ -313,3 +313,22 @@ return ListView.builder(
   },
 );
 ```
+
+### #06 ListView.seperated()
+
+- builder는 그냥 build만 해주는거고 seperated()을 사용하면 각 아이템 사이사이에 구분자를 넣을 수 있다.
+  separatorBuilder를 통해서.
+
+```dart
+return ListView.separated(
+  scrollDirection: Axis.horizontal,
+  itemCount: snapshot.data!.length,
+  itemBuilder: (context, index) {
+    var webtoon = snapshot.data![index];
+    return Text(webtoon.title);
+  },
+  separatorBuilder: (context, index) => const SizedBox(
+    width: 20,
+  ),
+);
+```
