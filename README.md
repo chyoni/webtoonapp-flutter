@@ -294,3 +294,22 @@ class HomeScreen extends StatelessWidget {
 }
 
 ```
+
+### #05 ListView.builder
+
+- ListView만 사용하게 되면 child를 배열로 받고 한번에 다 렌더링하는데 이건 최적화에 좋지않다.
+  그래서 ListView.builder를 사용하면 당장 화면에 보일 수 있는 것들만 가지고 화면에 뿌려주기 때문에 최적화에 적합하다.
+
+우선 scrollDirection은 말 그대로 방향을 결정하는 거고, itemCount는 렌더링 할 전체 카운트를 던져주면 된다.
+그리고 itemBuilder가 이제 실제로 렌더링할 Widget인데 여기서 item의 index를 통해서 렌더링을 한다. 화면에 다 뿌려질 정도의 개수만 한꺼번에.
+
+```dart
+return ListView.builder(
+  scrollDirection: Axis.horizontal,
+  itemCount: snapshot.data!.length,
+  itemBuilder: (context, index) {
+    var webtoon = snapshot.data![index];
+    return Text(webtoon.title);
+  },
+);
+```
