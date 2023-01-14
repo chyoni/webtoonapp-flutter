@@ -252,3 +252,45 @@ void getTodaysToons() async {
 ### #02 Model, Instance, Class, API
 
 ### #03 initState()
+
+### #04 FutureBuilder
+
+- 애는 StatefulWidget을 사용하지 않아도 StatelessWidget으로도 데이터를 받고 받으면 로딩 상태를 바꾸고 rendering을 다시 해주는 좋은 녀석이다. 사용하는 방법은 아래와 같다.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:webtoonapp/models/webtoon_model.dart';
+import 'package:webtoonapp/services/api_service.dart';
+
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
+
+  Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text(
+          "오늘의 웹툰",
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+        ),
+        foregroundColor: Colors.green,
+        backgroundColor: Colors.white,
+      ),
+      body: FutureBuilder(
+        future: webtoons,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const Text("There is data!");
+          } else {
+            return const Text("Loading...");
+          }
+        },
+      ),
+    );
+  }
+}
+
+```
