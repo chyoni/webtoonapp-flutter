@@ -436,3 +436,8 @@ class HomeScreen extends StatelessWidget {
   예를 들어, 카드를 선택해서 Detail 화면으로 이동될 때 해당 카드가 움직여지는 생동감을 애니메이션 효과로 줄 수 있다.
 
 ### #10 Episode, Detail Model / Episode, Detail API
+
+### #11 StatelessWidget to StatefulWidget
+
+- 우선, 만약 API를 사용할 때 프로퍼티로 받는 id같은 것을 참조하여 API를 호출해야 하면 StatelessWidget을 사용할 수 없다.
+  왜냐하면, 프로퍼티(`webtoon`)를 만들어 낼 때 다른 프로퍼티(`id`)를 참조하는것을 못하게 해놨기 때문인데 그래서 StatelessWidget에서 StatefulWidget으로 바꿔줘야 한다. 그리고 이렇게 바꾸고 나면 class가 두개로 분리가 되는데 하나는 State class고 하나는 Widget class다. 그래서 State class에서 build를 하고 initState를 하고 뭐 별걸 다 하는데 여기서 Widget class가 받는 프로퍼티 (id, title, ...)을 사용하기 위해선 `widget.id` 이런 형태로 써야한다.
