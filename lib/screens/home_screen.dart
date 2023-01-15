@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webtoonapp/models/webtoon_model.dart';
 import 'package:webtoonapp/services/api_service.dart';
+import 'package:webtoonapp/widgets/webtoon_card.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -24,12 +25,7 @@ class HomeScreen extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Column(
-              children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                Expanded(child: makeList(snapshot))
-              ],
+              children: [Expanded(child: makeList(snapshot))],
             );
           } else {
             return const Center(
@@ -48,34 +44,8 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       itemBuilder: (context, index) {
         var webtoon = snapshot.data![index];
-        return Column(
-          children: [
-            Container(
-              width: 250,
-              clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 5,
-                      offset: const Offset(0, 3),
-                      color: Colors.black.withOpacity(0.8),
-                    )
-                  ]),
-              child: Image.network(webtoon.thumb),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              webtoon.title,
-              style: const TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        );
+        return WebtoonCard(
+            title: webtoon.title, thumb: webtoon.thumb, id: webtoon.id);
       },
       separatorBuilder: (context, index) => const SizedBox(
         width: 40,
