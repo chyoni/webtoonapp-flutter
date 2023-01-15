@@ -449,3 +449,9 @@ class HomeScreen extends StatelessWidget {
 - https://pub.dev/packages/url_launcher
 
 ### #14 AppBar Icons
+
+### #15 SharedPreferences
+
+- 핸드폰에 저장이 되는 Storage 개념이라고 보면된다.
+
+- https://pub.dev/packages/shared_preferences
