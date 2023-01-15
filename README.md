@@ -443,3 +443,7 @@ class HomeScreen extends StatelessWidget {
   왜냐하면, 프로퍼티(`webtoon`)를 만들어 낼 때 다른 프로퍼티(`id`)를 참조하는것을 못하게 해놨기 때문인데 그래서 StatelessWidget에서 StatefulWidget으로 바꿔줘야 한다. 그리고 이렇게 바꾸고 나면 class가 두개로 분리가 되는데 하나는 State class고 하나는 Widget class다. 그래서 State class에서 build를 하고 initState를 하고 뭐 별걸 다 하는데 여기서 Widget class가 받는 프로퍼티 (id, title, ...)을 사용하기 위해선 `widget.id` 이런 형태로 써야한다.
 
 ### #12 Detail Screen
+
+### #13 url_launcher
+
+- https://pub.dev/packages/url_launcher
