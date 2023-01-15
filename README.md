@@ -434,3 +434,5 @@ class HomeScreen extends StatelessWidget {
 
 - Hero라는 Widget은 tag로 같은 녀석을 가지는 두 Widget을 생동감있게 해준다.
   예를 들어, 카드를 선택해서 Detail 화면으로 이동될 때 해당 카드가 움직여지는 생동감을 애니메이션 효과로 줄 수 있다.
+
+### #10 Episode, Detail Model / Episode, Detail API
