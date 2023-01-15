@@ -447,3 +447,5 @@ class HomeScreen extends StatelessWidget {
 ### #13 url_launcher
 
 - https://pub.dev/packages/url_launcher
+
+### #14 AppBar Icons
